@@ -9,7 +9,7 @@ export default async function DBConnection() {
         }
         cachedConnection = await mongoose.connect(process.env.DB_URI);
         console.log("DB connection DONE");
-        return cachedConnection.db
+        return cachedConnection
     } catch (error) {
         cachedConnection = null;
         console.error("DB connection failed:", error);
