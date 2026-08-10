@@ -4,7 +4,7 @@ import authController from "./modules/auth/auth.controller.js"
 import userController from "./modules/user/user.controller.js"
 import messageController from "./modules/message/message.controller.js"
 import { globalErrorHandling } from "./utils/error/error.js"
-export default async function bootstrap(app, express) {
+export default function bootstrap(app, express) {
   app.use(cors())
   app.use(express.json())
   app.use("/auth", authController)
