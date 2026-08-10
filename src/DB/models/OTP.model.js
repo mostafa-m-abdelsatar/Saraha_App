@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { OTPTypes } from "../../Modules/user/user.endPoint.js";
+import { OTPTypes } from "../../modules/user/user.endPoint.js";
 const OTPSchema = mongoose.Schema({
     userId:{
         type:mongoose.Types.ObjectId,
