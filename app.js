@@ -1,7 +1,10 @@
-import express from "express"
-import bootstrap from "./src/app.controller.js"
-const app = express()
+import express from "express";
+import bootstrap from "./src/app.controller.js";
 
-bootstrap(app, express)
+console.log(">>> APP.JS LOADED");
 
-export default app
+const app = express();
+
+bootstrap(app, express);
+
+export default app;
