@@ -1,32 +1,26 @@
 import nodemailer from "nodemailer"
 
-export const sendEmail = async ({ to="", cc="", bcc="", subject="Saraha_App", text="", html="", attachments = []} = {}) => {
-    try {
-        const transporter = nodemailer.createTransport({
-            host: "smtp.gmail.com",
-            port: 587,
-            secure: false,
-            auth:{
-               user:process.env.COMPANY_EMAIL,
-               pass:process.env.EMAIL_PASSWORD
-            },
-            // tls: {
-            //     rejectUnauthorized: false 
-            // }
-        });
-
-        const info = await transporter.sendMail({
-            from: `"Saraha APP" <${process.env.COMPANY_EMAIL}>`,
-            to, cc, bcc, 
-            subject, 
-            text,
-            html, 
-            attachments
-        });
-        return info
-    } catch (err) {
-        throw err
+const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    pool: true,            
+    maxConnections: 5,      
+    maxMessages: 100,       
+    auth: {
+        user: process.env.COMPANY_EMAIL,
+        pass: process.env.EMAIL_PASSWORD
     }
+});
+export const sendEmail = async ({ to="", cc="", bcc="", subject="Saraha_App", text="", html="", attachments = []} = {}) => {
+    return await transporter.sendMail({
+        from: `"Saraha APP" <${process.env.COMPANY_EMAIL}>`,
+        to, cc, bcc,
+        subject,
+        text,
+        html,
+        attachments
+    });
 }
 
 export const HTMLFormat = ({header, description, link="", button}={})=>{
