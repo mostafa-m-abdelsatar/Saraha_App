@@ -77,7 +77,7 @@ export const changeEmail = asyncHandler(async (req, res, next) => {
       $set: {
         OTP: hashedOTP,
         data: { tempEmail },
-        expiresAt: new Date(Date.now() + 60 * 1000),
+        expiresAt: new Date(Date.now() + 90 * 1000),
         attempts: 0,
       },
     },
@@ -207,7 +207,7 @@ export const unFreezeUserOTP = asyncHandler(async (req, res, next) => {
     { userId: user._id, type: OTPTypes.unFreeze },
     {
       OTP: hashedOTP,
-      expiresAt: new Date(Date.now() + 60 * 1000),
+      expiresAt: new Date(Date.now() + 90 * 1000),
     },
     { upsert: true },
   );

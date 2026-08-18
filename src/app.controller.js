@@ -11,7 +11,7 @@ export default function bootstrap(app, express) {
   app.use("/user", userController)
   app.use("/message", messageController)
 
-  app.use( (req, res)=>{
+  app.all('{/*non}' ,(req, res)=>{
     return res.status(404).json({message:"in-valid routing"}) 
   })  
   app.use(globalErrorHandling)

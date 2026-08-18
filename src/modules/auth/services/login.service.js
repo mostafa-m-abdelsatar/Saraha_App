@@ -60,7 +60,7 @@ export const forgetPasswordOTP = asyncHandler(async (req, res, next) => {
     {
       $set: {
         OTP: hashedOTP,
-        expiresAt: Date.now() + 60 * 1000,
+        expiresAt: new Date(Date.now() + 90 * 1000),
       },
     },
     { upsert: true },
